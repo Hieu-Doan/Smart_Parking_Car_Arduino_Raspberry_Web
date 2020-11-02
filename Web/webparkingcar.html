@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Hoai An" />
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Smart Parking</title>
+
+    <script type="text/javascript" src="jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetData();
+        });
+
+        function GetData() {
+            var url = 'https://api.thingspeak.com/channels/1041075/feeds.json?results=2';
+            $.ajax
+                ({
+                    url: url,
+                    type: 'GET',
+                    contentType: "application/json",
+                    //dataType: "json",
+                    //crossDomain: true,
+                    success: function (data, textStatus, xhr) {
+                        $.each(data, function (i, item) {
+                            if (i == 'feeds') {
+                                var ubound = item.length;
+                                $('#txtField1').val(item[ubound - 1].field1);
+                                if (txtField1.value == 1) {
+                                    document.getElementById("txtField1").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField1").style.background = "blue";
+                                }
+                                $('#txtField2').val(item[ubound - 1].field2);
+                                if (txtField2.value == 1) {
+                                    document.getElementById("txtField2").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField2").style.background = "blue";
+                                }
+                                $('#txtField3').val(item[ubound - 1].field3);
+                                if (txtField3.value == 1) {
+                                    document.getElementById("txtField3").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField3").style.background = "blue";
+                                }
+                                $('#txtField4').val(item[ubound - 1].field4);
+                                if (txtField4.value == 1) {
+                                    document.getElementById("txtField4").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField4").style.background = "blue";
+                                }
+                                $('#txtField5').val(item[ubound - 1].field5);
+                                if (txtField5.value == 1) {
+                                    document.getElementById("txtField5").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField5").style.background = "blue";
+                                }
+                                $('#txtField6').val(item[ubound - 1].field6);
+                                if (txtField6.value == 1) {
+                                    document.getElementById("txtField6").style.background = "red";
+                                }
+                                else {
+                                    document.getElementById("txtField6").style.background = "blue";
+                                }
+                            }
+                        });
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            setTimeout(GetData, 1000);
+        }   
+    </script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <div class="header">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="images/an3.png" alt="" width="300px" height="150px">
+                </div>
+                <div class="col-md-8">
+                    <h1>
+                        <strong>Đề tài: BÃI GIỮ XE THÔNG MINH</strong>
+                    </h1>
+                    <h4>GVHD: TS Mai Thăng Long<br>
+                        SV thực hiện: Nguyễn Hoài Ân<br>Đoàn Văn Hiếu</h4>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section">
+            <div class="row">
+                <div class="col-md-2">
+                    <ul>
+                        <i style="margin-left: 30px; font-size: 150px; color: mediumblue;" class="fas fa-parking"></i>
+                        <li><a href="#" onclick="return location.reload();">Trang chủ</li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModalDK">Đăng ký thẻ xe</a></li>
+                        <li><a href="#">Thông tin cá nhân</a></li>
+                        <li><a href="#">Ưu đãi</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="xe">
+                            <div class="col-md-5" style="padding-left: 100px;">
+                                <h4> Dãy A</h4>
+                                <p>Vị trí 1</p>
+                                <div class="vitri">
+
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField1" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                </div>
+
+                                <p>Vị trí 2</p>
+                                <div class="vitri">
+
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField2" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                </div>
+
+                                <p>Vị trí 3</p>
+                                <div class="vitri">
+
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField3" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                </div>
+                                <div class="way">
+                                    <i style="margin-left: 20px; color: grey" ; class="fas fa-arrow-down"></i>
+                                    <h5 style="padding-left: 0px; color: grey;">LỐI RA</h5>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-2" style="padding-top: 125px;">
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+                                <i style="margin-left: 35px; font-size: 40px;"
+                                    class="fas fa-grip-lines-vertical"></i><br><br>
+
+                            </div>
+                            <div class="col-md-5">
+                                <h4> Dãy B</h4>
+                                <p>Vị trí 4</p>
+                                <div class="vitri">
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField4" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                    <br>
+                                </div>
+
+                                <p>Vị trí 5</p>
+                                <div class="vitri">
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField5" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                    <br>
+                                </div>
+                                <p>Vị trí 6</p>
+                                <div class="vitri">
+                                    <i style="font-size: 100px;" class="fas fa-car"></i>
+                                    <input id="txtField6" type="text"
+                                        style="width: 30px; height: 30px; border-radius: 30px;" />
+                                    <br>
+                                </div>
+                                <div class="way">
+                                    <i style="margin-left: 20px; color: grey" ; class="fas fa-arrow-up"></i>
+                                    <h5 style="padding-left: 0px; color: grey;">LỐI VÀO</h5>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mota">
+
+                        <h2 align="center"><strong>Mô tả cách thức hoạt động của bãi xe</strong> <i
+                                style="font-size: 50px;" class="fas fa-info-circle"></i></h2>
+                        <p align="center">+ Khi <font color="red">CÓ XE</font> tại vị trí đỗ xe. Hệ thống sẽ cập nhật
+                            trạng thái tại vị trí đó <strong>
+                                <font color="red">MÀU ĐỎ</font>
+                            </strong></p>
+                        <p align="center">+ Khi <font color="blue">KHÔNG CÓ XE</font> tại vị trí đỗ xe. Hệ thống sẽ cập
+                            nhật trạngthái tại vị trí đó <strong>
+                                <font color="blue">MÀU XANH</font>
+                            </strong></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+
+            <p>Po0sted by: Hoai An & Van Hieu</p>
+            <p>Contact information: <a href="mailto:hoaian300698@gmail.com">
+                    hoaian300698@gmail.com</a>.</p>
+
+        </div>
+
+        <div class="modal fade" id="myModalDK" role="dialog" style="margin-top:200px;">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:#ECECEC">
+
+                        <h4 style="float:left" class="modal-title">Đăng ký thẻ xe</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container" style="width: 400px;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="phone" placeholder="Số điện thoại"
+                                    name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="address" placeholder="Địa chỉ"
+                                    name="address">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="usernameDK"
+                                    placeholder="Thời hạn đăng ký (Đơn vị tháng)" name="usernameDK">
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <button type="submit" data-dismiss="modal" class="btn btn-success">Đăng ký</button>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
