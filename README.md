@@ -43,5 +43,5 @@
 - Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_KNN_Character_Recognition_Python
  
 ## Clip Demo 
-
+- Link: https://youtu.be/WXhyleVbDTQ
 
