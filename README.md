@@ -1,6 +1,6 @@
 # Smart_Parking_Car_Arduino_Raspberry_Web
-## How to run ?
-###Arduino:
+## How to run 
+### Arduino:
 0. Add Library of folder "Library_for_System": Sketch-> Add File-> Choose...
 1. Connection description in code Arduino.
 2. Load code Arduino "System" into the board.
@@ -35,9 +35,9 @@ If you want to training chars. Its on file "Training_KNN_Character_Recognition_P
 Run file webparkingcar.html
 
 ## Reference:
-Link: https://github.com/ankit1khare/Automatic-Parking-Management
-Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python
-Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_KNN_Character_Recognition_Python
+- Link: https://github.com/ankit1khare/Automatic-Parking-Management
+- Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python
+- Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_KNN_Character_Recognition_Python
 
 
 
