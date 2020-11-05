@@ -22,10 +22,10 @@
 #define TIME_OUT  5000           
 #define LedRed1   30   
 #define LedRed2   31
-#define LedGreen  34    //alarm of button
+#define LedGreen  34    
 #define Buzzer    36 
 
-const int rs = 16, en = 17, d4 = 18, d5 = 19, d6 = 20, d7 = 21;
+const int rs = 16, en = 17, d4 = 18, d5 = 19, d6 = 20, d7 = 21;    //Pins LCD connect with Arduino
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 String Check_Car_Number; 
 unsigned long time;
@@ -33,8 +33,8 @@ unsigned int in,out,Check_full = 0;
 unsigned int Total_of_car = 6;    //The limited of parking car                    
 RFID1 rfid;         //create a variable type of RFID1 
 uchar serNum[20];   // array to store your ID
-AF_Stepper motor1(255, 1);    // chia quay moi vong la 255 steps o chanel 1&2
-AF_Stepper motor2(255, 2);    // chia quay moi vong la 255 steps o chanel 3&4
+AF_Stepper motor1(255, 1);    //  255 steps on chanel 1&2
+AF_Stepper motor2(255, 2);    //  255 steps on chanel 3&4
 
 /*-----------------------------Read Distance WAY IN--------------------------------------------
 ----------------------------------------------------------------------------------------------*/ 
@@ -114,7 +114,7 @@ int Check_Card_ID()
   int Check_ID = 0;
   uchar*id = serNum; 
   /*--------------------------------CARD 1---------------------------------*/ 
-  if( id[0] == 0x29 && id[1] == 0x17 && id[2] == 0x8C && id[3] == 0xC1) 
+  if( id[0] == 0x29 && id[1] == 0x17 && id[2] == 0x8C && id[3] == 0xC1)      
   {
         Check_ID = 1;
         Check_Car_Number = "43E12656";       //License plate 
@@ -155,7 +155,7 @@ int Check_Card_ID()
         Check_Car_Number = "59E07221";      
         tone(Buzzer, 3000, 200);      
   }     
-  /*else if("add card ID and license plate here")
+  /*else if("add card ID and license plate here...")
   {
         Check_ID = 1;
   }
@@ -300,7 +300,7 @@ void loop()
               {     
                   in = Detect_Object_In(); 
                   out = Detect_Object_Out();
-                  if ((unsigned long) (millis() - time) > 5000)   // if the car does not move in the parking in 5 seconds, just close barrier
+                  if ((unsigned long) (millis() - time) > 5000)   // If the car does not move in the parking in 5 seconds, just close barrier
                   {
                       motor1.step(510, BACKWARD, MICROSTEP);    // Close Barrier 
                       Display_LCD();

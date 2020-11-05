@@ -50,17 +50,17 @@ def Check_empty_parking_car():
                   'num_of_frames': int(cap.get(cv2.CAP_PROP_FPS))}
 
     with open(fn_yaml, 'r') as stream:  # "r" chi đọc
-        parking_data = yaml.load(stream, Loader=yaml.Loader)  # chạy trên rasp thì sửa "FullLoader"-->"Loader"
-    parking_contours = []  # khởi tạo list rỗng
+        parking_data = yaml.load(stream, Loader=yaml.Loader)  # If error in this line, change "FullLoader"-->"Loader"
+    parking_contours = []  
     parking_bounding_rects = []
     parking_mask = []
 
     for park in parking_data:
-        points = np.array(park['points'])  # lấy tọa độ trong file yml
-        id = np.array(park['id'])  # lấy ID trong file yml
-        rect = cv2.boundingRect(points)  # vẽ hình chữ nhật bao quanh tọa độ
-        points_shifted = points.copy()  # copy ra 1 list khác
-        points_shifted[:, 0] = points[:, 0] - rect[0]  #
+        points = np.array(park['points'])  
+        id = np.array(park['id'])  
+        rect = cv2.boundingRect(points)  
+        points_shifted = points.copy()  
+        points_shifted[:, 0] = points[:, 0] - rect[0]  
         points_shifted[:, 1] = points[:, 1] - rect[1]
         parking_contours.append(points)
         parking_bounding_rects.append(rect)
@@ -77,8 +77,8 @@ def Check_empty_parking_car():
     while (cap.isOpened()):
         spot = 0
         occupied = 0
-        video_cur_pos += 1  # cap.get(cv2.CAP_PROP_POS_MSEC) / 1000.0 # Current position of the video file in seconds
-        video_cur_frame += 1  # cap.get(cv2.CAP_PROP_POS_FRAMES) # Index of the frame to be decoded/captured next
+        video_cur_pos += 1  # Current position of the video file in seconds
+        video_cur_frame += 1  # Index of the frame to be decoded/captured next
         ret, frame = cap.read()
 
         if ret == False:
@@ -99,7 +99,7 @@ def Check_empty_parking_car():
                 points[:, 0] = points[:, 0] - rect[0]  # shift contour to roi
                 points[:, 1] = points[:, 1] - rect[1]
                 # print(np.std(roi_gray), np.mean(roi_gray))
-                status = np.std(roi_gray) < 20 and np.mean(roi_gray) > 50    #20 & 50 chinh nguong
+                status = np.std(roi_gray) < 20 and np.mean(roi_gray) > 50    
                 # If detected a change in parking status, save the current time
                 if status != parking_status[ind] and parking_buffer[ind] == None:
                     parking_buffer[ind] = video_cur_pos
@@ -116,11 +116,11 @@ def Check_empty_parking_car():
         if config['parking_overlay']:
             for ind, park in enumerate(parking_data):
                 points = np.array(park['points'])
-                id = np.array(park['id'])  # lấy ID
+                id = np.array(park['id'])  
                 if parking_status[ind]:
-                    color = (0, 255, 0)  # khung màu xanh lá
+                    color = (0, 255, 0)  
                     spot = spot + 1
-                    #print("ID empty box: ", id)  # xuất ra ID của ô trống                    
+                    #print("ID empty box: ", id)  
                     if id == 1:
                         data1 = 0
                     if id == 2:
@@ -134,7 +134,7 @@ def Check_empty_parking_car():
                     if id == 6:
                         data6 = 0
                 else:
-                    color = (0, 0, 255)  # khung màu đỏ
+                    color = (0, 0, 255)  
                     occupied = occupied + 1
                     if id == 1:
                         data1 = 1
@@ -152,7 +152,7 @@ def Check_empty_parking_car():
                 moments = cv2.moments(points)
                 centroid = (int(moments['m10'] / moments['m00']) - 3, int(moments['m01'] / moments['m00']) + 3)
                 cv2.putText(frame_out, str(park['id']), (centroid[0] + 1, centroid[1] + 1), cv2.FONT_HERSHEY_SIMPLEX,
-                            0.4, (255, 255, 255), 1, cv2.LINE_AA)  # hiển thị id ở dạng text bên trong các ô
+                            0.4, (255, 255, 255), 1, cv2.LINE_AA)  
                 cv2.putText(frame_out, str(park['id']), (centroid[0] - 1, centroid[1] - 1), cv2.FONT_HERSHEY_SIMPLEX,
                             0.4, (255, 255, 255), 1, cv2.LINE_AA)
                 cv2.putText(frame_out, str(park['id']), (centroid[0] + 1, centroid[1] - 1), cv2.FONT_HERSHEY_SIMPLEX,
@@ -163,14 +163,14 @@ def Check_empty_parking_car():
                             cv2.LINE_AA)
 
         if config['text_overlay']:
-            cv2.rectangle(frame_out, (1, 0), (200, 5), (255, 255, 255), 45)  # Chỉnh vị trí khung nền và màu nền
-            # str_on_frame = "Frames: %d/%d" % (video_cur_frame, video_info['num_of_frames'])        #số khung hình/s
-            # cv2.putText(frame_out, str_on_frame, (5,30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,128,255), 2, cv2.LINE_AA)   #show dưới dạng text ra màn hình
-            str_on_frame = "Spot: %d Occupied: %d" % (spot, occupied)  # thông số spot và occupied
+            cv2.rectangle(frame_out, (1, 0), (200, 5), (255, 255, 255), 45)  
+            # str_on_frame = "Frames: %d/%d" % (video_cur_frame, video_info['num_of_frames'])        
+            # cv2.putText(frame_out, str_on_frame, (5,30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,128,255), 2, cv2.LINE_AA)   
+            str_on_frame = "Spot: %d Occupied: %d" % (spot, occupied)  
             cv2.putText(frame_out, str_on_frame, (5, 20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 128, 255), 2,
-                        cv2.LINE_AA)  ##show dưới dạng text ra màn hình
-            #print("occupied: ", occupied)  # Tổng số xe trong bãi
-            #print("spot: ", spot)  # Tổng ô còn trống
+                        cv2.LINE_AA)  
+            #print("occupied: ", occupied)  
+            #print("spot: ", spot)  
 
         cv2.imshow('Smart Parking Detection', frame_out)
         cv2.moveWindow('Smart Parking Detection',720,15)
