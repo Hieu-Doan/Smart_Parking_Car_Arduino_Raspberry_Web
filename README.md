@@ -2,6 +2,8 @@
 ## How to run 
 ### Arduino
 0. Add Library of folder "Library_for_System": Sketch-> Add File-> Choose...
+  - File library RFID1 of "Sunfounder" which I was a reference in their website but it can't turn 
+    off by Select Slave pins in each RFID so that I was edited for me in this project.
 1. Connection description in code Arduino.
 2. Load code Arduino "System" into the board.
 
@@ -41,7 +43,6 @@
 - Link: https://github.com/ankit1khare/Automatic-Parking-Management
 - Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python
 - Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_KNN_Character_Recognition_Python
- 
+- Link Library of Sunfounder: https://docs.sunfounder.com/projects/vincent-kit/en/latest/2.35_rfid-rc522_module.html
 ## Clip Demo 
 - Link: https://youtu.be/WXhyleVbDTQ
-
