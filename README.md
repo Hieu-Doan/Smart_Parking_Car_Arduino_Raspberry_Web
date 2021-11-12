@@ -37,12 +37,14 @@
 
 ## Notice
 - Sometimes the identification of the license plate is not accurate.
-- If you want to training chars. Refer to this link below of Chris Dahms.
+- License plate processing time is quite slowly around 6-7s.(We use Rasberry Pi 3 B+)
 
 ## Reference
+- Webserver: Design by An Nguyen (My partner)
 - Link: https://github.com/ankit1khare/Automatic-Parking-Management
 - Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_License_Plate_Recognition_Python
 - Link: https://github.com/MicrocontrollersAndMore/OpenCV_3_KNN_Character_Recognition_Python
 - Link Library of Sunfounder: https://docs.sunfounder.com/projects/vincent-kit/en/latest/2.35_rfid-rc522_module.html
+
 ## Clip Demo 
 - Link: https://youtu.be/WXhyleVbDTQ
